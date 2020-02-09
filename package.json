@@ -1,0 +1,28 @@
+{
+   "name": "ballroom-bookkeeper",
+   "version": "0.0.1",
+   "description": "Repository of ballroom competitor and competition data",
+   "main": "index.js",
+   "scripts": {
+      "start": "node src/index.js",
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "lint": "eslint src/js"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ballroombookkeeper/BallroomBookkeeper.git"
+   },
+   "author": "ericblam",
+   "license": "GPL-3.0",
+   "bugs": {
+      "url": "https://github.com/ballroombookkeeper/BallroomBookkeeper/issues"
+   },
+   "homepage": "https://github.com/ballroombookkeeper/BallroomBookkeeper#readme",
+   "dependencies": {
+      "express": "^4.17.1",
+      "fs": "0.0.1-security"
+   },
+   "devDependencies": {
+      "eslint": "^6.8.0"
+   }
+}
