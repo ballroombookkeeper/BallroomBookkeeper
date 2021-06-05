@@ -11,7 +11,12 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/src/index.js"
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script", "start", "--", "-c", "${workspaceRoot}/src/config.json"
+            ],
+            "preLaunchTask": "npm: build"
         }
     ]
 }
