@@ -1,9 +1,12 @@
 // Imports
-import express from 'express';
+import express, { Request, Response } from 'express';
 import fs from 'fs';
 import jsonschema from 'jsonschema';
 import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
+
+import { errorHandler } from './routes/errorHandler';
+import { RequestRouter } from './routes/requestRouter';
 
 const DEFAULT_SERVER_PORT = 8080;
 
@@ -52,10 +55,8 @@ const port = config.server.port ?? DEFAULT_SERVER_PORT;
 const app = express();
 
 // Server setup
-app.get('/', (req, res) => {
-    res.send('Ballroom Bookkeeper')
-});
-
+app.use('/', RequestRouter);
+app.use(errorHandler);
 app.listen(port, () => {
-    console.log('Server listening on port ' + port)
+    console.log('Server listening on port ' + port);
 });
