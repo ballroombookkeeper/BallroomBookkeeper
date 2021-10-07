@@ -1,4 +1,5 @@
 // Imports
+import express from 'express';
 import fs from 'fs';
 import jsonschema from 'jsonschema';
 import yargs from 'yargs/yargs';
