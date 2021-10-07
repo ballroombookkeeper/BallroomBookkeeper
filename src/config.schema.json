@@ -13,6 +13,15 @@
                 }
             }
         },
+        "app": {
+            "type": "object",
+            "properties": {
+                "path": {
+                    "type": "string"
+                }
+            },
+            "required": ["path"]
+        },
         "database": {
             "type": "object",
             "properties": {
@@ -65,5 +74,5 @@
             }
         }
     },
-    "required": ["server", "database"]
+    "required": ["server", "app", "database"]
 }

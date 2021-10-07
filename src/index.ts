@@ -1,12 +1,8 @@
 // Imports
-import express, { Request, Response } from 'express';
 import fs from 'fs';
 import jsonschema from 'jsonschema';
 import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
-
-import { errorHandler } from './routes/errorHandler';
-import { RequestRouter } from './routes/requestRouter';
 
 const DEFAULT_SERVER_PORT = 8080;
 
@@ -17,6 +13,9 @@ type ServerArguments = {
 type ServerConfig = {
     server: {
         port?: number
+    },
+    app: {
+        path: string
     }
 }
 
@@ -55,8 +54,8 @@ const port = config.server.port ?? DEFAULT_SERVER_PORT;
 const app = express();
 
 // Server setup
-app.use('/', RequestRouter);
-app.use(errorHandler);
+// app.use('/api/', ApiRouter);
+app.use(express.static(config.app.path));
 app.listen(port, () => {
     console.log('Server listening on port ' + port);
 });

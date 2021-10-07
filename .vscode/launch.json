@@ -16,7 +16,8 @@
             "runtimeArgs": [
                 "run-script", "start", "--", "-c", "${workspaceRoot}/src/config.json"
             ],
-            "preLaunchTask": "npm: build"
+            "preLaunchTask": "npm: build",
+            "outFiles": ["${workspaceFolder}/build/**/*.js"]
         }
     ]
 }

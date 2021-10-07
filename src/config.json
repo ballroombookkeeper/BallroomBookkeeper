@@ -3,6 +3,9 @@
     "server": {
         "port": 8080  
     },
+    "app": {
+        "path": "/mnt/c/eric/dev/BallroomBookkeeper/ballroom-bookkeeper-ui/build/"
+    },
     "database": {
         "dbname": "ballroom_competitions",
         "host": "localhost",
