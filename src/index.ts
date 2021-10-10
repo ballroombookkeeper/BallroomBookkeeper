@@ -2,22 +2,17 @@
 import express from 'express';
 import fs from 'fs';
 import jsonschema from 'jsonschema';
+import { Pool } from 'pg';
 import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
+
+import { ApiRouter } from './ApiRouter';
+import { ServerConfig } from './types';
 
 const DEFAULT_SERVER_PORT = 8080;
 
 type ServerArguments = {
     config: string
-}
-
-type ServerConfig = {
-    server: {
-        port?: number
-    },
-    app: {
-        path: string
-    }
 }
 
 // Parse arguments
@@ -53,9 +48,17 @@ if (!configValidation.valid) {
 // Configure Server
 const port = config.server.port ?? DEFAULT_SERVER_PORT;
 const app = express();
+const databaseConfig = config.database;
+const dbPool = new Pool({
+    user: databaseConfig.user,
+    password: databaseConfig.password,
+    host: databaseConfig.host,
+    database: databaseConfig.dbname,
+    port: databaseConfig.port
+});
 
 // Server setup
-// app.use('/api/', ApiRouter);
+app.use('/api/', new ApiRouter(dbPool).router);
 app.use(express.static(config.app.path));
 app.listen(port, () => {
     console.log('Server listening on port ' + port);
