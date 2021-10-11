@@ -15,9 +15,16 @@ class ApiRouter {
 
     private async competitorRouter(req: express.Request, res: express.Response): Promise<void> {
         const searchTerm = req.query.search ?? '';
-        await this.dbPool.connect();
-        const competitors = await this.dbPool.query("select competitor_id, competitor_name from bookkeeper.competitor where competitor_name like $1 || '%' limit 10", [searchTerm]);
-        res.status(200).json(competitors.rows);
+        console.log("Searching on '" + req.query.search + "'");
+        console.log("connected");
+        try {
+            const competitors = await this.dbPool.query("select competitor_id, competitor_name from bookkeeper.competitor where LOWER(competitor_name) like LOWER($1) || '%' limit 10", [searchTerm]);
+            console.log(competitors);
+            res.status(200).json(competitors.rows);
+        }
+        finally {
+            console.log("something went wrong");
+        }
     }
 }
 
