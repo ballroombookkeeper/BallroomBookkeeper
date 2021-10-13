@@ -22,7 +22,7 @@ class ApiRouter {
             console.log(competitors);
             res.status(200).json(competitors.rows);
         }
-        finally {
+        catch {
             console.log("something went wrong");
         }
     }
@@ -31,11 +31,11 @@ class ApiRouter {
         const searchTerm = req.query.search ?? '';
         console.log("Searching competitions on '" + req.query.search + "'");
         try {
-            const competitions = await this.dbPool.query("select competition_id, competition_name, competition_code from bookkeeper.competition where lower(competition_name) like lower($1) || '%' or lower(competition_code) like lower($1) limit 10", [searchTerm]);
+            const competitions = await this.dbPool.query("select competition_id, competition_name, competition_code from bookkeeper.competition where lower(competition_name) like lower($1) || '%' or lower(competition_code) like lower($1) || '%' limit 10", [searchTerm]);
             console.log(competitions);
             res.status(200).json(competitions.rows);
         }
-        finally {
+        catch {
             console.log("something went wrong");
         }
     }
