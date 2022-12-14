@@ -20,7 +20,7 @@
    },
    "homepage": "https://github.com/ballroombookkeeper/BallroomBookkeeper#readme",
    "dependencies": {
-      "express": "^4.17.1",
+      "express": "^4.17.3",
       "fs": "0.0.1-security",
       "jsonschema": "^1.4.0",
       "pg": "^8.7.1",
